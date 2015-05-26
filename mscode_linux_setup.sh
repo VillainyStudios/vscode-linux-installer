@@ -21,13 +21,14 @@ function prestart {
     echo "This script currently does not support OSX." 1>&2
     echo "OSX should be added in the next patch" 1>&2
     exit 1
-
+  fi
   # Check for 64-bit
 
   if [[ $bitlength -ne 64 ]]; then
     echo "Visual Studio Code is currently only 64-bit." 1>&2
     echo "The 32-bit hack is not currently supported." 1>&2
     exit 1
+  fi
 }
 
 # Fetch archive

@@ -37,18 +37,18 @@ function fetch_archive {
     wget -t0 -O ~/vscode-linux.zip http://go.microsoft.com/fwlink/?LinkID=534108
 ### OSX Install Fetch ###
 # else
-#   wget -t0 -O ~/vscode-osx.zip http://go.microsoft.com/fwlink/?LinkID=534108
+#   wget -t0 -O ~/vscode-osx.zip http://go.microsoft.com/fwlink/?LinkID=534106
   fi
 }
 
 # Extract Archive
 function extract_archive {
-  unzip -LL -q ./VSCode-linux.zip -d ./code/
+  unzip -LL -q ~/vscode-linux.zip -d ./code/
 }
 
 # Extract code to FHS suggested location for "install"
 function install_code {
-  unzip -LL -q /vscode-linux.zip -d /opt/vscode/
+  unzip -LL -q ~/vscode-linux.zip -d /opt/vscode/
 }
 
 # Create .desktop file
@@ -62,6 +62,7 @@ function make_desktop_file {
   echo 'Icon=vso' >> ~/code.desktop
   echo 'Terminal=false' >> ~/code.desktop
   echo 'Categories=Programming;Development;' >> ~/code.desktop
+      ##### I probably should have just done these directly in /opt/
 }
 
 # Put files into appropriate folders
@@ -74,7 +75,7 @@ function move_files {
 echo "Please select an option"
 select ans in 'Fetch & Install' 'Fetch & Extract ONLY' "Fetch ONLY" "Install ONLY" "EXIT"; do
   case $ans in
-    1 ) fetch_archive; install_code; create_desktop-file; move_files;
+    1 ) fetch_archive; install_code; create_desktop_file; move_files;
     2 ) fetch_archive; extract_archive;
     3 ) fetch_archive;
     4 ) echo "COMING SOON";

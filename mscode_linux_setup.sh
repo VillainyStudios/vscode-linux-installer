@@ -43,10 +43,7 @@ function fetch_archive {
 
 # Extract Archive
 function extract_archive {
-  # Extract for linux
   unzip -LL -q ./VSCode-linux.zip -d ./code/
-  # Extract for OSX
-  # CODE GOES HERE
 }
 
 # Extract code to FHS suggested location for "install"
@@ -73,14 +70,14 @@ function move_files {
   cp ./resources/app/vso.png /usr/share/icons/vso.png
 }
 
-### Main Call ### 
+### Main Call ###
 echo "Please select an option"
 select ans in 'Fetch & Install' 'Fetch & Extract ONLY' "Fetch ONLY" "Install ONLY" "EXIT"; do
   case $ans in
     1 ) fetch_archive; install_code; create_desktop-file; move_files;
     2 ) fetch_archive; extract_archive;
     3 ) fetch_archive;
-    4 ) echo "COMING SOON"; 
+    4 ) echo "COMING SOON";
     5 ) echo "";
     esac
 done

@@ -17,7 +17,7 @@ function prestart {
      exit 1
   fi
   # Check for Linux
-  if [[ $os != "Linux"]]; then
+  if [[ $os != "Linux" ]]; then
     echo "This script currently does not support OSX." 1>&2
     echo "OSX should be added in the next patch" 1>&2
     exit 1

@@ -19,24 +19,17 @@ function prestart {
   # Check for Linux
   if [[ $os != "Linux" ]]; then
     echo "This script currently does not support OSX." 1>&2
-    echo "OSX should be added in the next patch" 1>&2
-    exit 1
-  fi
-  # Check for 64-bit
-
-  if [[ $bitlength -ne 64 ]]; then
-    echo "Visual Studio Code is currently only 64-bit." 1>&2
-    echo "The 32-bit hack is not currently supported." 1>&2
+    echo "OSX should be added in a future patch." 1>&2
     exit 1
   fi
 }
 
 # Fetch archive
 function fetch_archive {
-  if [[ $os = "Linux" ]]; then
+  if [[ $os = "Linux" ]] && [[ $bitlength == 64]]; then
     wget -t0 -O ~/vscode-linux.zip http://go.microsoft.com/fwlink/?LinkID=534108
 ### OSX Install Fetch ###
-# else
+# elif [[ $os = "Darwin" ]]; then 
 #   wget -t0 -O ~/vscode-osx.zip http://go.microsoft.com/fwlink/?LinkID=534106
   fi
 }
@@ -75,11 +68,11 @@ function move_files {
 echo "Please select an option"
 select ans in 'Fetch & Install' 'Fetch & Extract ONLY' "Fetch ONLY" "Install ONLY" "EXIT"; do
   case $ans in
-    1 ) fetch_archive; install_code; create_desktop_file; move_files;
-    2 ) fetch_archive; extract_archive;
-    3 ) fetch_archive;
-    4 ) echo "COMING SOON";
-    5 ) echo "";
+    1 ) fetch_archive; install_code; create_desktop_file; move_files;;
+    2 ) fetch_archive; extract_archive;;
+    3 ) fetch_archive;;
+    4 ) echo "COMING SOON";;
+    5 ) echo "";;
     esac
 done
 
